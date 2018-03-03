@@ -31,7 +31,7 @@ ifeq ($(wildcard .git),)
 	# not in git
 	VERSION:= $(cat $(TOPDIR)/VERSION)
 else
-	VERSION:=$(shell git -C $(TOPDIR) name-rev $(shell git describe --always --abbrev=40) | sed --expression="s/ /-/")
+	VERSION:=$(shell git -C $(TOPDIR) describe --abbrev=40 --tags)
 endif
 CFLAGS += -DVERSION="\"$(VERSION)\""
 
