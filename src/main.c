@@ -5,19 +5,20 @@
 int main(int argc, char** argv) {
 	// need to parse argv and get config path
 	config_t* conf = argparse(argc, argv);
-	switch(conf->command) {
-	STOP:
+	switch(conf->args.command) {
+	case STOP:
 		stop(conf);
 		break;
-	START:
+	case START:
 		start(conf);
 		break;
-	RESTART:
+	case RESTART:
 		stop(conf);
 		start(conf);
 		break;
 	default:
 		break;
 	}
+	free(conf);
 	return 0;
 }

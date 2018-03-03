@@ -2,18 +2,23 @@
 #define CONFIG_H
 
 typedef enum command {
-	STOP,
+	STOP = 0,
 	START,
 	RESTART,
 	LOCK,
-	RELOAD
+	RELOAD,
+	NO_COMMAND,
 } command_t;
 
-typedef struct config {
-	int someDaemonOption;
-	char* pidfile_path;
-	char* config_path;
+typedef struct arguments {
 	command_t command;
+	char* config_path;
+	int arg_count;
+} args_t;
+
+typedef struct config {
+	char* pidfile_path;
+	struct arguments args;
 } config_t;
 
 /*
